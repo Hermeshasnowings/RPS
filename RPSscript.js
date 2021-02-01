@@ -1,85 +1,89 @@
-
-let playerScore = 0;
+let userScore = 0;
 let computerScore = 0;
 
 
-
 //get computers selection
-function computerPlay() { return (["paper","scissors","rock"])[Math.random() * 3 | 0];}
-
- //console.log(computerSelection);
-
-
-
+function computerPlay() 
+{ return (["paper","scissors","rock"])[Math.random() * 3 | 0];}
 
 
 // single round
-
 function playRound(playerSelection, computerSelection) {
-computerPlay();
     
 //tie state
 
-    if (playerSelection === "rock" && computerSelection ==="rock" || 
-    computerSelection === "scissors" && playerSelection === "scissors"  || 
-    computerSelection === "paper" && playerSelection === "paper"){
-        return ("It's a tie!");}
+    if (playerSelection.toLowerCase() === "rock" && computerSelection ==="rock" || 
+    computerSelection === "scissors" && playerSelection.toLowerCase() === "scissors"  || 
+    computerSelection === "paper" && playerSelection.toLowerCase() === "paper"){
+        console.log("It's a tie!");
+        return ("Tie");
+        }
 
    //win or lose state
 
-    else if (playerSelection === "rock" && computerSelection ==="paper"){
-        return ("Paper beats rock! You lose!");}
+    else if (playerSelection.toLowerCase() === "rock" && computerSelection ==="paper"){
+        computerScore++;
+        console.log("Paper beats rock! You lose!");
+    return ("Loss");
+}
 
-        else if (playerSelection === "rock" && computerSelection === "scissors"){
-        return ("Rock beats scissors, you win!");}
+        else if (playerSelection.toLowerCase() === "rock" && computerSelection === "scissors"){
+        userScore++;
+        console.log("Rock beats scissors, you win!");
+        return ("Win")
+    
+}
     
        
-        else if (playerSelection === "paper" && computerSelection ==="scissors"){
-            return ("Scissors beats paper! You lose!");}
+        else if (playerSelection.toLowerCase() === "paper" && computerSelection ==="scissors"){
+            computerScore++;
+            console.log("Scissors beats paper! You lose!");
+        return ("Loss")}
 
-            else if (playerSelection === "paper" && computerSelection === "rock"){
-                return ("Paper beats Rock, you lose!");}
+            else if (playerSelection.toLowerCase() === "paper" && computerSelection === "rock"){
+                computerScore++;
+                console.log("Paper beats Rock, you lose!");
+            return ("Loss")}
     
-            else if (playerSelection === "scissors" && computerSelection === "paper"){
-            return ("Scissors beats paper, you win!");}
+            else if (playerSelection.toLowerCase() === "scissors" && computerSelection === "paper"){
+                userScore++;
+                console.log("Scissors beats paper, you win!")
+            return ("Win");}
 
-            else if (playerSelection === "scissors" && computerSelection === "rock"){
-                return ("Rock beats scissors, you lose!");}
+            else if (playerSelection.toLowerCase() === "scissors" && computerSelection === "rock"){
+                computerScore++;
+                console.log("Rock beats scissors, you lose!");
+            return ("Loss")}
 
-
-    let winstate = playRound("Scissors beats paper, you win!");
-
-        //keeping score
-if (playRound == winstate) {
-    playerScore ++;
-}          
-else if (playRound == losestate)
-{computerScore ++;}
-    }
-
+            }
     
-
-    let playerSelection = prompt("Rock, Paper, or Scissors?");
-const computerSelection = computerPlay();
-
-
-
-console.log(playRound(playerSelection, computerSelection));
-console.log(playerScore);
-
 // 5 rounds
 
-
 function game() {
-    
-playRound();
-console.log(playerScore);
-playRound();
-playRound();
-playRound();
-playRound();}
+        playRound();
+        playRound();
+        playRound();
+        playRound();
+        playRound();
+}
 
-game();
+
+for(var i=0; i<5;i++){
+    let playerSelection = prompt("pick a move!");
+    const computerSelection = computerPlay()
+    console.log(playRound(playerSelection, computerSelection));
+    console.log("computer's score = " + computerScore);
+    console.log("User's score = " + userScore);
+}
+
+if (userScore > computerScore) {
+console.log("User is the winner!");}
+
+else if (computerScore > userScore){
+console.log("Computer is the winner");}
+
+else if (console.log("nobody wins"));
+
 
 
 
